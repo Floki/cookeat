@@ -6,11 +6,11 @@ import java.awt.Image
 class Recipe {
 	
 	String title
-	String despription
+	String description
 	String recipe
 	Map<String,String> ingredients
 	Byte[] picture
-	int nbPeople
+	int nbPeople					// Recipe is for nbPeope people
 	User owner
 	
 	static belongsTo = [owner:User]
@@ -21,5 +21,8 @@ class Recipe {
 		owner blank:false, unique: true
 		recipe blank:false
 		ingredients blank:false
+		picture nullable: true
+		nbPeople nullable: true
+		description nullable: true
     }
 }

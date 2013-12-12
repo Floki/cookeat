@@ -3,6 +3,7 @@ package cookeat.user
 import cookeat.recipe.Comment
 import cookeat.recipe.Recipe
 import cookeat.recipe.Vote
+
 import java.awt.Image
 
 
@@ -12,11 +13,11 @@ class User {
 
 	String username
 	String password
-	String Firstname
-	String Lastname
+	String firstname
+	String lastname
 	String description
 	String email
-	Image avatar
+	Byte[] avatar
 	
 	static hasMany = [ownerRecipes:Recipe, favoritesRecipes:Recipe, votes:Vote, comments:Comment, friends:User]
 	
@@ -30,7 +31,11 @@ class User {
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
-		email blank: false, unique: true, email: true	
+		email blank: false, unique: true, email: true
+		avatar nullable: true
+		description nullable: true
+		firstname nullable: true
+		lastname nullable: true
 	}
 
 	static mapping = {
