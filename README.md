@@ -63,7 +63,7 @@ Système de vote.
 
 Jenkins
 --------------
-nyansquad.servegame.com:9090
+http://nyansquad.servegame.com:9090
 
 
 
