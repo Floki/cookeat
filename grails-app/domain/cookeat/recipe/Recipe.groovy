@@ -9,7 +9,7 @@ class Recipe {
 	String despription
 	String recipe
 	Map<String,String> ingredients
-	Bytes[] picture
+	Byte[] picture
 	int nbPeople
 	User owner
 	
