@@ -43,3 +43,9 @@
 *.iws
 .DS_Store
 
+
+.metadata/*
+
+RemoteSystemsTempFiles/.project
+
+Servers/*
