@@ -129,3 +129,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/favicon.ico':                ['permitAll']
 ]
 
+// bootstrap
+grails.plugins.twitterbootstrap.fixtaglib = true
+grails.plugin.cloudfoundry.appname = 'grails-twitter-bootstrap'
+
