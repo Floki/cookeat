@@ -60,9 +60,12 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ":scaffolding:2.0.1"
         compile ':cache:1.1.1'
+				
+				// plugins for the test step
+				test : "spock:0.7"
 		
-		//spring security
-		compile ":spring-security-core:2.0-RC2"
+				//spring security
+				compile ":spring-security-core:2.0-RC2"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.4" // or ":hibernate4:4.1.11.4"
@@ -74,7 +77,7 @@ grails.project.dependency.resolution = {
         //runtime ":cached-resources:1.1"
         //runtime ":yui-minify-resources:0.1.5"
 		
-		compile ":twitter-bootstrap:3.0.3"
-		compile ":lesscss-resources:1.3.3"
+				compile ":twitter-bootstrap:3.0.3"
+				compile ":lesscss-resources:1.3.3"
     }
 }
