@@ -5,7 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class UserService {
 
-    def serviceMethod() {
-
-    }
+    def addUser(User user) {
+			user.save(FailOnError : true)
+			return true
+		}
 }
