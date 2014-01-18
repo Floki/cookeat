@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 @TestFor(User)
 class UserSpec extends Specification {
-
+						
     def setup() {
     }
 
