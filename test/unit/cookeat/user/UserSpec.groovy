@@ -1,4 +1,4 @@
-package cookeat
+package cookeat.user
 
 import cookeat.user.User;
 import grails.test.mixin.TestFor

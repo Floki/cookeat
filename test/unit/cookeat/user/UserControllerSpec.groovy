@@ -2,6 +2,8 @@ package cookeat.user
 
 
 
+import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugins.springsecurity.*;
 import grails.test.mixin.*
 import spock.lang.*
 
@@ -9,10 +11,16 @@ import spock.lang.*
 @Mock(User)
 class UserControllerSpec extends Specification {
 
+		SpringSecurityService springSecurityService = Mock(SpringSecurityService)
+		
+		def setup() {
+		}
+		
     def populateValidParams(params) {
-        assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+				assert params != null
+        params["username"] = "UnitTest";
+				params["password"] = "UnitTest";
+				params["email"] = "unitTest@unit.test";
     }
 
     void "Test the index action returns the correct model"() {
@@ -49,6 +57,7 @@ class UserControllerSpec extends Specification {
             populateValidParams(params)
             user = new User(params)
 
+						user.springSecurityService = springSecurityService
             controller.save(user)
 
         then:"A redirect is issued to the show action"
@@ -83,6 +92,7 @@ class UserControllerSpec extends Specification {
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
             def user = new User(params)
+						user.springSecurityService = springSecurityService
             controller.edit(user)
 
         then:"A model is populated containing the domain instance"
@@ -111,7 +121,9 @@ class UserControllerSpec extends Specification {
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            user = new User(params).save(flush: true)
+            user = new User(params)
+						user.springSecurityService = springSecurityService
+						user.save(flush: true)
             controller.update(user)
 
         then:"A redirect is issues to the show action"
@@ -130,7 +142,9 @@ class UserControllerSpec extends Specification {
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def user = new User(params).save(flush: true)
+            def user = new User(params)
+						user.springSecurityService = springSecurityService
+						user.save(flush: true)
 
         then:"It exists"
             User.count() == 1

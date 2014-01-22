@@ -3,8 +3,8 @@ package cookeat.recipe
 import java.util.HashMap;
 
 import cookeat.user.User;
-import grails.test.mixin.TestFor
-import spock.lang.Specification
+import grails.test.mixin.*
+import spock.lang.*
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions

@@ -11,7 +11,7 @@ class BootStrap {
     def init = { servletContext ->
 		Role adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true, FailOnError : true)
 		
-		User user1 = new User(username:"user1",password:"test",email:"user1@test.test",)
+		User user1 = new User(username:"user1",password:"test",email:"user1@test.test")
 		user1.save(failOnError : true)
 		User user2 = new User(username:"user2",password:"test",email:"user2@test.test")
 		user2.save(FailOnError : true)
