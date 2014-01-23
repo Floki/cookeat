@@ -2,17 +2,19 @@ package cookeat.recipe
 
 
 
+import cookeat.user.User
 import grails.test.mixin.*
 import spock.lang.*
 
 @TestFor(CommentController)
-@Mock(Comment)
+@Mock([Comment, User, Recipe])
 class CommentControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["owner"] = new User();
+				params["recipe"] = new Recipe();
+				params["text"] = "MAMAMIA!" 
     }
 
     void "Test the index action returns the correct model"() {
