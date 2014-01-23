@@ -18,7 +18,7 @@ class Recipe {
 
     static constraints = {
 		title blank:false
-		owner blank:false, unique: true
+		owner blank:false
 		recipe blank:false
 		ingredients blank:false
 		picture nullable: true
