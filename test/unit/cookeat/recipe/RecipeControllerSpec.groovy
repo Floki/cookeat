@@ -2,17 +2,22 @@ package cookeat.recipe
 
 
 
+import cookeat.user.User
 import grails.test.mixin.*
 import spock.lang.*
 
 @TestFor(RecipeController)
-@Mock(Recipe)
+@Mock([Recipe,User])
 class RecipeControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+				params["title"] = "UnitTest" 
+				params["description"] = "UnitTest"
+				params["recipe"] = "1 : Make a Test \n 2 : DONE!"
+				Map<String, String> ingedients = new HashMap<String,String>();
+				params["ingedients"] = ingedients
+				params["owner"] = new User();
     }
 
     void "Test the index action returns the correct model"() {
