@@ -30,6 +30,7 @@ class VoteServiceIntegrationSpec extends Specification {
 			
 		expect:
 			voteService.updateVote(v1,2) == v1
+			v1.rate == 2
 			voteService.updateVote(v1,12) == null
     }
 	
@@ -40,8 +41,11 @@ class VoteServiceIntegrationSpec extends Specification {
 			def recipe = new Recipe(ingredients: new HashMap<String, String>(), title: "title", owner: user, recipe: "test" )
 			recipe.save(failOnError: true)
 			
-		expect:
-			voteService.createVote(user, recipe, 0)
+		when:
+			Vote vote = voteService.createVote(user, recipe, 0)
+			
+		then:
+			vote.owner == user && vote.recipe == recipe && vote.rate == 0
 			voteService.createVote(user, recipe, 10) == null
 	}
 	
