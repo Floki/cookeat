@@ -16,6 +16,15 @@ class UserSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "create non valid user"() {
+		when:"new user is not valid"
+		then:
+		!(new User(username:usr,password:pwd,firstname:name,lastname:nickname,email:mail).validate());
+		
+		where:
+		user 	|pwd  	|mail 
+		"user" 	|"pwd"	|""
+		"user"	|""		|"mail"
+		"" 		|"pwd"	|"mail"
     }
 }
