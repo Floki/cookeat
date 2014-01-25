@@ -27,4 +27,13 @@ class UserSpec extends Specification {
 		"user"	|""		|"mail"
 		"" 		|"pwd"	|"mail"
     }
+	void "create valid user"(){
+		when:"validate new user"
+		then:
+		(new User(username:usr,password:pwd,firstname:name,lastname:nickname,email:mail).validate());
+		
+		where:
+		user 	|pwd  	|mail
+		"user" 	|"pwd"	|"mail"
+	}
 }
