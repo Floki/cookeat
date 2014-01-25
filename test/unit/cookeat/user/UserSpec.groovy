@@ -22,7 +22,7 @@ class UserSpec extends Specification {
 		!(new User(username:usr,password:pwd,firstname:name,lastname:nickname,email:mail).validate());
 		
 		where:
-		user 	|pwd  	|mail 
+		usr 	|pwd  	|mail 
 		"user" 	|"pwd"	|""
 		"user"	|""		|"mail"
 		"" 		|"pwd"	|"mail"
@@ -33,7 +33,7 @@ class UserSpec extends Specification {
 		(new User(username:usr,password:pwd,firstname:name,lastname:nickname,email:mail).validate());
 		
 		where:
-		user 	|pwd  	|mail
+		usr 	|pwd  	|mail
 		"user" 	|"pwd"	|"mail"
 	}
 }
