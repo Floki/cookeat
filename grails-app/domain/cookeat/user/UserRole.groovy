@@ -8,6 +8,12 @@ class UserRole implements Serializable {
 
 	User user
 	Role role
+	
+	static constraints={
+		
+		user nullable=false
+		role nullable=false
+	}
 
 	boolean equals(other) {
 		if (!(other instanceof UserRole)) {
