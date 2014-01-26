@@ -5,7 +5,6 @@ import cookeat.user.User
 class Comment {
 	
 	User owner
-	Recipe recipe
 	String text
 	
 	static belongsTo = [recipe:Recipe]

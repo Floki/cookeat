@@ -11,7 +11,6 @@ class Recipe {
 	Map<String,String> ingredients
 	Byte[] picture
 	int nbPeople					// Recipe is for nbPeope people
-	User owner
 	
 	static belongsTo = [owner:User]
 	static hasMany = [votes:Vote,comments:Comment]
