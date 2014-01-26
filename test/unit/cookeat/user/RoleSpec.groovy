@@ -27,7 +27,7 @@ class RoleSpec extends Specification{
 		when:"authority is valid"
 		
 		then:
-		new Role(authoritu:auth).validate();
+		new Role(authority:auth).validate();
 		
 		
 		where:
