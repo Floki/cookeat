@@ -33,9 +33,9 @@ class User {
 		password blank: false
 		email blank: false, unique: true, email: true
 		avatar nullable: true
-		description nullable: true
-		firstname nullable: true
-		lastname nullable: true
+		description nullable: true, blank: true
+		firstname nullable: true, blank: true
+		lastname nullable: true, blank: true
 	}
 
 	static mapping = {

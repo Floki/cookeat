@@ -24,5 +24,22 @@ class UserServiceIntegrationSpec extends Specification {
 				userService.createUser("login","","login@mdp.fr") == null;
 				userService.createUser("login","mdp","") == null;
 				userService.createUser("login","mdp","login@mdp.fr") == null;
+				userService.createUser("login","mdp","loginr") == null;
     }
+		
+		
+		void "test delete user"() {
+			setup :
+				userService.createUser("login","mdp","login@mdp.fr") 
+				userService.createUser("login2","mdp2","login2@mdp.fr") 
+			expect:
+				User.findByUsername("login") != null
+				User.findByEmail("login2@mdp.fr") != null
+			when :
+				userService.deleteUser("login")
+				userService.deleteUser("login2@mdp.fr")
+			then:
+				User.findByUsername("login") == null
+				User.findByEmail("login2@mdp.fr") == null
+		}
 }
