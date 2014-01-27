@@ -29,4 +29,60 @@ class UserService {
 			}
 		}
 		
+		def updateUser(User actualUser, def update, Action action) {
+			switch(action) {
+				case Action.PASSWORD :
+					if(!(update instanceof String)) {
+						return null;
+					}	
+					actualUser.setPassword(update)
+					return actualUser.save()
+					break;
+				case Action.EMAIL :
+					if(!(update instanceof String)) {
+						return null;
+					}
+					actualUser.setEmail(update)
+					return actualUser.save()
+					break;
+				case Action.FIRSTNAME :
+					if(!(update instanceof String)) {
+						return null;
+					}
+					actualUser.setFirstname(update)
+					return actualUser.save()
+					break;
+				case Action.LASTNAME :
+					if(!(update instanceof String)) {
+						return null;
+					}
+					actualUser.setLastname(update)
+					return actualUser.save()
+					break;
+				case Action.DESCRIPTION :
+					if(!(update instanceof String)) {
+						return null;
+					}
+					actualUser.setDescription(update)
+					return actualUser.save()
+					break;
+				case Action.AVATAR :
+					if(!(update instanceof Byte[])) {
+						return null
+					}
+					actualUser.setAvatar(update)
+					return actualUser.save()
+					break;
+			}
+			return null;
+		}
+		
+		def readUser(String stringToSearch) {
+			if(stringToSearch.toUpperCase() ==~ /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/) {
+				return User.findByEmail(stringToSearch)
+			}
+			else {
+				return User.findByUsername(stringToSearch)
+			}
+		}
 }
