@@ -11,6 +11,7 @@ import spock.lang.*
 class RecipeServiceIntegrationSpec extends Specification {
 	
 	RecipeService recipeService
+	VoteService voteService
 
     def setup() {
     }
@@ -61,5 +62,22 @@ class RecipeServiceIntegrationSpec extends Specification {
 			recipeService.updateTitleRecipe(recipe, "newTitle")
 			recipe.title == "newTitle"
 			recipeService.updatePictureRecipe(recipe, null)
+	}
+	
+	void "test vote on recipe"(){
+		setup:
+			def user = new User(email: "test@test.test", username: "test", password: "test" )
+			user.save(failOnError : true)
+			def user2 = new User(email: "test2@test.test", username: "test2", password: "test2" )
+			user.save(failOnError : true)
+			
+		when:
+			Recipe recipe = recipeService.createBaseRecipe("title", "recipe", new HashMap<String, String>(), user)
+			
+		then:
+			Vote vote = recipeService.voteOnRecipe(recipe, 0, user)
+			recipe.votes.contains(vote)
+			recipeService.voteOnRecipe(recipe, 0, user) == null
+			
 	}
 }

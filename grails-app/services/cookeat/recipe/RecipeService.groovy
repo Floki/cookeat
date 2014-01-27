@@ -7,17 +7,23 @@ import grails.transaction.Transactional
 
 @Transactional
 class RecipeService {
+	
+	VoteService voteService
 
     def createRecipe(String title,String description,String recipe,Map<String,String> ingredients,
 						byte[] picture,	int nbPeople, User owner) {
 		Recipe recipeToSave = new Recipe(owner: owner, title: title, description: description, recipe: recipe, 
 			ingredients: ingredients,
 			picture: picture, nbPeople: nbPeople)
+		recipeToSave.votes = new HashSet<Vote>()
+		recipeToSave.comments = new HashSet<Comment>()
 		return recipeToSave.save()
     }
 						
 	def createBaseRecipe(String title, String recipe, Map<String,String> ingredients, User owner){
 		Recipe recipeToSave = new Recipe(owner: owner, title: title,recipe: recipe, ingredients: ingredients)
+		recipeToSave.votes = new HashSet<Vote>()
+		recipeToSave.comments = new HashSet<Comment>()
 		return recipeToSave.save()
 	}
 	
@@ -49,5 +55,15 @@ class RecipeService {
 	def updateNbPeopleRecipe(Recipe actual, int nbPeople){
 		actual.nbPeople = nbPeople
 		return actual.save()
+	}
+	
+	def voteOnRecipe(Recipe actual, int rate, User user){
+		Vote voteTemp = Vote.findByOwnerAndRecipe(user,actual)
+		if(voteTemp != null)
+			return null
+		Vote vote = voteService.createVote(user, actual, rate)
+		actual.votes.add(vote)
+		actual.save()
+		return vote
 	}
 }
