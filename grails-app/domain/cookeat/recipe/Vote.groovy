@@ -4,11 +4,9 @@ import cookeat.user.User
 
 class Vote {
 	
-	User owner
-	Recipe recipe
 	int rate
 	
-	static belongsTo = [recipe:Recipe]
+	static belongsTo = [recipe:Recipe, owner: User]
 
     static constraints = {
 		owner blank:false
