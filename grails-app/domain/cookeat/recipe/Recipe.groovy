@@ -9,7 +9,7 @@ class Recipe {
 	String description
 	String recipe
 	Map<String,String> ingredients
-	Byte[] picture
+	byte[] picture
 	int nbPeople					// Recipe is for nbPeope people
 	
 	static belongsTo = [owner:User]
