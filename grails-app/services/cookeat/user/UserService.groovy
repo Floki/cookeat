@@ -37,42 +37,36 @@ class UserService {
 					}	
 					actualUser.setPassword(update)
 					return actualUser.save()
-					break;
 				case Action.EMAIL :
 					if(!(update instanceof String)) {
 						return null;
 					}
 					actualUser.setEmail(update)
 					return actualUser.save()
-					break;
 				case Action.FIRSTNAME :
 					if(!(update instanceof String)) {
 						return null;
 					}
 					actualUser.setFirstname(update)
 					return actualUser.save()
-					break;
 				case Action.LASTNAME :
 					if(!(update instanceof String)) {
 						return null;
 					}
 					actualUser.setLastname(update)
 					return actualUser.save()
-					break;
 				case Action.DESCRIPTION :
 					if(!(update instanceof String)) {
 						return null;
 					}
 					actualUser.setDescription(update)
 					return actualUser.save()
-					break;
 				case Action.AVATAR :
 					if(!(update instanceof Byte[])) {
 						return null
 					}
 					actualUser.setAvatar(update)
 					return actualUser.save()
-					break;
 			}
 			return null;
 		}

@@ -67,4 +67,15 @@ class UserServiceIntegrationSpec extends Specification {
 				// Decide to avoid username change
 				userService.updateUser(user, "username", UserService.Action.USERNAME) == null
 		}
+		
+		void "test read user"() {
+			setup :
+				userService.createUser("login","mdp","login@mdp.fr")
+				userService.createUser("login2","mdp2","login2@mdp.fr")
+			expect:
+				userService.readUser("login") != null
+				userService.readUser("login2@mdp.fr") != null
+				userService.readUser("logindqsdqd") == null
+				userService.readUser("login2@mddsqp.fr") == null
+		}
 }
