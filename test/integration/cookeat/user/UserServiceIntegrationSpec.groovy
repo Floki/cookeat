@@ -13,14 +13,16 @@ class UserServiceIntegrationSpec extends Specification {
 
 		UserService userService = new UserService()
 
-    void "add user"() {
-			when:"When we add an normal user"
-				User user = new User(username:"userSIS",password:"test",email:"userSIS@test.test")
-				assert user != null
-				assert userService.addUser(user) == true
-				
-			then:"L'utilisateur est enregistre dans la base de donnees"
-				def userFound = User.findByUsername("userSIS")
-				userFound
+    void "test create user"() {
+			expect:
+				User.findByUsername("login") == null
+				User.findByEmail("login@mdp.fr") == null
+				userService.createUser("login","mdp","login@mdp.fr") != null;
+				User.findByUsername("login") != null
+				User.findByEmail("login@mdp.fr") != null
+				userService.createUser("","mdp","login@mdp.fr") == null;
+				userService.createUser("login","","login@mdp.fr") == null;
+				userService.createUser("login","mdp","") == null;
+				userService.createUser("login","mdp","login@mdp.fr") == null;
     }
 }

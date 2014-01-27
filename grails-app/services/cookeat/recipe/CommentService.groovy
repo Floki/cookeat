@@ -8,10 +8,10 @@ import grails.transaction.Transactional
 @Transactional
 class CommentService {
 
-    def createComment(User owner, Recipe recipe, String text) {
+  def createComment(User owner, Recipe recipe, String text) {
 		Comment comment = new Comment(owner: owner, recipe: recipe, text: text)
 		return comment.save();
-    }
+  }
 	
 	def readAllCommentOnRecipe(Recipe recipe){
 		List<Comment> listComment = Comment.getAll()
