@@ -9,6 +9,7 @@ import grails.transaction.Transactional
 class RecipeService {
 	
 	VoteService voteService
+	CommentService commentService 
 
     def createRecipe(String title,String description,String recipe,Map<String,String> ingredients,
 						byte[] picture,	int nbPeople, User owner) {
@@ -65,5 +66,12 @@ class RecipeService {
 		actual.votes.add(vote)
 		actual.save()
 		return vote
+	}
+	
+	def commentOnRecipe(Recipe actual, String text, User user){
+		Comment comment=commentService.createComment(user, actual, text)
+		actual.comments.add(comment)
+		actual.save()
+		return comment
 	}
 }
