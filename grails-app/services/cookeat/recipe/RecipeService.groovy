@@ -28,6 +28,18 @@ class RecipeService {
 		return recipeToSave.save()
 	}
 	
+	def readAllRecipe(User owner){
+		
+		List<Recipe> listRecipe=Recipe.getAll()
+		List<Recipe> result=new ArrayList<Recipe>()
+		for( var in listRecipe){
+			if(var.getOwner==owner){
+				result.add(var)
+			}
+			return result	
+		}	
+	}
+	
 	def updateTitleRecipe(Recipe actual, String title){
 		actual.title = title
 		return actual.save()
