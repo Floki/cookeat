@@ -88,6 +88,11 @@ class RecipeService {
 	}
 	
 	def deleteRecipe(Recipe actual,User user){
-		Recipe.findByRecipeAndOwner(actual, user).delete()
+//		List<Recipe> listRecipe=Recipe.findAllByOwner(user)
+//		for(var in listRecipe)
+//			if(var.getRecipe()==actual){
+//				actual.delete()
+//			}
+		Recipe.findByOwnerAndRecipe(user, actual).delete()
 	}
 }

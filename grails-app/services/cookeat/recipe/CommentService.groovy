@@ -18,7 +18,7 @@ class CommentService {
 		List<Comment> result = new ArrayList<Comment>()
 		
 		for (comment in listComment){
-			if (comment.getRecipe() == recipe)
+			if (comment.getRecipe == recipe)
 				result.add(comment)
 		}
 		

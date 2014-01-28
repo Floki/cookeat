@@ -10,7 +10,7 @@ import spock.lang.*
  */
 class RecipeServiceIntegrationSpec extends Specification {
 	
-	RecipeService recipeService
+	RecipeService recipeService =new RecipeService()
 	VoteService voteService
 
     def setup() {
@@ -35,6 +35,23 @@ class RecipeServiceIntegrationSpec extends Specification {
 			recipeService.createRecipe("title", "", "recipe", new HashMap<String, String>(), new byte[0], -1, null) == null
 			
     }
+	
+	void "test delete recipe"(){
+		setup:
+			def user = new User(email: "test@test.test", username: "test", password: "test" )
+			user.save(failOnError : true)
+			def recipe = new Recipe(title: "title","" )
+			recipe.save(failOnError:true)
+		
+		expect:
+			Recipe.findByOwnerAndRecipe(user, recipe)!=null
+			
+		when:
+			recipeService.deleteRecipe(recipe, user)
+			
+		then:
+		Recipe.findByOwnerAndRecipe(user, recipe)==null
+	}
 	
 	void "test update recipe"(){
 		setup:
