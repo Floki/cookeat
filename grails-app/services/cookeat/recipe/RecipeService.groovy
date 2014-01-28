@@ -74,4 +74,8 @@ class RecipeService {
 		actual.save()
 		return comment
 	}
+	
+	def deleteRecipe(Recipe actual,User user){
+		Recipe.findByRecipeAndOwner(actual, user).delete()
+	}
 }

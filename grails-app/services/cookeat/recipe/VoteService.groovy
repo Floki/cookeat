@@ -29,6 +29,4 @@ class VoteService {
 	def deleteVote(Vote vote){
 		vote.delete()
 	}
-	
-	
 }
