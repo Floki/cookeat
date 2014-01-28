@@ -85,7 +85,6 @@ class VoteServiceIntegrationSpec extends Specification {
 			
 		then:	
 			actual.contains(v1) == true
-			actual.contains(v2) == false
-			
+			actual.contains(v2) == false	
 	}
 }

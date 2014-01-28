@@ -80,4 +80,18 @@ class RecipeServiceIntegrationSpec extends Specification {
 			recipeService.voteOnRecipe(recipe, 0, user) == null
 			
 	}
+	
+	void "test comment on recipe"(){
+		
+		setup:
+		def user = new User(email: "test@test.test", username: "test", password: "test" )
+		user.save(failOnError : true)
+		
+		when:
+		Recipe recipe = recipeService.createBaseRecipe("title", "recipe", new HashMap<String, String>(), user)
+		
+		then:
+		Comment comment=recipeService.commentOnRecipe(recipe, "comment", user)
+		recipe.comments.contains(comment)
+	}
 }
