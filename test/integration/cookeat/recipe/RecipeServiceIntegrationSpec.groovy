@@ -40,11 +40,10 @@ class RecipeServiceIntegrationSpec extends Specification {
 		setup:
 			def user = new User(email: "test@test.test", username: "test", password: "test" )
 			user.save(failOnError : true)
-			def recipe = new Recipe(title: "title","" )
-			recipe.save(failOnError:true)
+			Recipe recipe = recipeService.createBaseRecipe("title", "recipe", new HashMap<String, String>(), user)
 		
 		expect:
-			Recipe.findByOwnerAndRecipe(user, recipe)!=null
+			Recipe.findByOwnerAndRecipe(user,recipe)!=null
 			
 		when:
 			recipeService.deleteRecipe(recipe, user)
