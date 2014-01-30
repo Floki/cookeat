@@ -10,7 +10,7 @@ import spock.lang.*
  */
 class RecipeServiceIntegrationSpec extends Specification {
 	
-	RecipeService recipeService =new RecipeService()
+	RecipeService recipeService
 	VoteService voteService
 
     def setup() {
