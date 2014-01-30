@@ -59,6 +59,9 @@ class UserServiceIntegrationSpec extends Specification {
 				User.findByDescription("desc") != null
 				userService.updateUser(user, new byte[20], UserService.Action.AVATAR) != null;
 				
+				userService.updateUser(null, "desc2", UserService.Action.DESCRIPTION) == null;
+				User.findByDescription("desc2") == null
+				
 				userService.updateUser(user, 777, UserService.Action.EMAIL) == null
 				userService.updateUser(user, 777, UserService.Action.FIRSTNAME) == null
 				userService.updateUser(user, 777, UserService.Action.LASTNAME) == null

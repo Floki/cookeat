@@ -17,23 +17,21 @@ class UserSpec extends Specification {
     }
 
     void "create non valid user"() {
-		when:"new user is not valid"
-		then:
-		!(new User(username:usr,password:pwd,firstname:name,lastname:nickname,email:mail).validate());
-		
-		where:
-		usr 	|pwd  	|mail 
-		"user" 	|"pwd"	|""
-		"user"	|""		|"mail"
-		"" 		|"pwd"	|"mail"
+			when:"new user is not valid"
+			then:
+				new User(username:username,password:password,firstname:firstname,lastname:lastname,email:email).validate() == isValid;
+			
+			where:
+				username 		|password  	|firstname 	|lastname		|email	 					|isValid
+				"username"	|"password"	|"firstname"|"lastname"	|"email"					|false
+				""					|"password"	|"firstname"|"lastname"	|"email@mail.fr"	|false
+				"username"	|""					|"firstname"|"lastname"	|"email@mail.fr"	|false
+				"username"	|"password"	|""					|"lastname"	|"email@mail.fr"	|true
+				"username"	|"password"	|"firstname"|""					|"email@mail.fr"	|true
+				"username"	|"password"	|"firstname"|"lastname"	|""								|false
+				"username"	|"password"	|"firstname"|"lastname"	|"email@mail.fr"	|true
+				null				|"password"	|"firstname"|"lastname"	|"email@mail.fr"	|false
+				"username"	|null				|"firstname"|"lastname"	|"email@mail.fr"	|false
+				"username"	|"password"	|"firstname"|"lastname"	|null							|false
     }
-	void "create valid user"(){
-		when:"validate new user"
-		then:
-		(new User(username:usr,password:pwd,firstname:name,lastname:nickname,email:mail).validate());
-		
-		where:
-		usr 	|pwd  	|mail
-		"user" 	|"pwd"	|"mail"
-	}
 }
