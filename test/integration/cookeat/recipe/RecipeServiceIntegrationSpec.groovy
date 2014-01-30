@@ -84,6 +84,39 @@ class RecipeServiceIntegrationSpec extends Specification {
 			recipeService.updatePictureRecipe(recipe, null)
 	}
 	
+	void "test recipe search"(){
+		setup:
+			User user = new User(email: "test@test.test", username: "test", password: "test" )
+			user.save(failOnError : true);
+			Recipe recipe1 = new Recipe(title : 		 "omelette au fromage", 
+																	description: "avec des champignons",
+																	recipe: 		 "mettez les oeufs",
+																	owner:			 user,
+																	ingredients: new HashMap<String, String>());
+			Recipe recipe2 = new Recipe(title : 		 "gateaux à la noix de coco", 
+																	description: "avec des pépites de chocolats",
+																	recipe: 		 "mettez les oeufs",
+																	owner:			 user,
+																	ingredients: new HashMap<String, String>());
+			Recipe recipe3 = new Recipe(title : 		 "scouts aux épices de pins", 
+																	description: "cru et au feu de camp",
+																	recipe: 		 "prenez une hache et attendez la nuit",
+																	owner:			 user,
+																	ingredients: new HashMap<String, String>());
+			recipe1.save(failOnError : true)
+			recipe2.save(failOnError : true)
+			recipe3.save(failOnError : true)			
+		expect:
+			recipeService.searchRecipe("omelette").size() == 1
+			recipeService.searchRecipe("choco").size() == 1
+			recipeService.searchRecipe("gateau").size() == 1
+			recipeService.searchRecipe("noix").size() == 1
+			recipeService.searchRecipe("champignons").size() == 1
+			recipeService.searchRecipe("geaorge").size() == 0
+			recipeService.searchRecipe("viandes").size() == 0
+			recipeService.searchRecipe("chauuuddd cacao").size() == 0
+	}
+	
 	void "test vote on recipe"(){
 		setup:
 			def user = new User(email: "test@test.test", username: "test", password: "test" )
