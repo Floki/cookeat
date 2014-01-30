@@ -111,4 +111,17 @@ class RecipeServiceIntegrationSpec extends Specification {
 		Comment comment=recipeService.commentOnRecipe(recipe, "comment", user)
 		recipe.comments.contains(comment)
 	}
+	
+	void "test read all recipe"(){
+		
+		setup:
+			def user = new User(email: "test@test.test", username: "test", password: "test" )
+			user.save(failOnError : true)
+			
+		when:
+			List<Recipe> actual=recipeService.readAllRecipe(user)
+			
+		then:
+			actual.contains(actual)
+	}
 }
