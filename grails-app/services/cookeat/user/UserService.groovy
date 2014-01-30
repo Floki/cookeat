@@ -28,8 +28,11 @@ class UserService {
 				User.findByUsername(stringToSearch).delete()
 			}
 		}
-		
+
 		def updateUser(User actualUser, def update, Action action) {
+			if(actualUser == null) {
+				return null;
+			}
 			switch(action) {
 				case Action.PASSWORD :
 					if(!(update instanceof String)) {
@@ -62,7 +65,7 @@ class UserService {
 					actualUser.setDescription(update)
 					return actualUser.save()
 				case Action.AVATAR :
-					if(!(update instanceof Byte[])) {
+					if(!(update instanceof byte[])) {
 						return null
 					}
 					actualUser.setAvatar(update)

@@ -33,7 +33,7 @@ class RecipeService {
 		List<Recipe> listRecipe=Recipe.getAll()
 		List<Recipe> result=new ArrayList<Recipe>()
 		for( var in listRecipe){
-			if(var.getOwner==owner){
+			if(var.owner==owner){
 				result.add(var)
 			}
 			return result	
