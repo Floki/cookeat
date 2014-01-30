@@ -1,5 +1,6 @@
 package cookeat.user
 
+import cookeat.recipe.Recipe
 import grails.transaction.Transactional
 
 @Transactional
@@ -81,5 +82,14 @@ class UserService {
 			else {
 				return User.findByUsername(stringToSearch)
 			}
+		}
+		
+		def addRecipeToFavorite(User user,Recipe recipe){
+			
+			if((user.favoritesRecipes.contains(recipe)) == false){
+				user.favoritesRecipes.add(recipe)
+				return user.save()
+			}
+			return false
 		}
 }
