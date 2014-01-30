@@ -36,13 +36,13 @@ class CommentSpec extends Specification {
 	void "create valid comment"() {
 	
 	when: "valid comment"
-		
 		then:
 		(new Comment( owner:own, recipe :rec, text: txt).validate());
 		
 		where:
 		own		  | rec           |txt
 		new User()| new Recipe()| "new comment"
+		new User()| new Recipe()| "long comment for vote long comment for vote long comment for vote long comment for vote long comment for vote"
 	
 	}
 }
