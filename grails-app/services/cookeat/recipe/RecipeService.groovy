@@ -36,8 +36,8 @@ class RecipeService {
 			if(var.owner==owner){
 				result.add(var)
 			}
-			return result	
-		}	
+		}
+		return result
 	}
 	
 	def updateTitleRecipe(Recipe actual, String title){
