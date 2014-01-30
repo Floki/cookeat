@@ -17,7 +17,7 @@ class User {
 	String lastname
 	String description
 	String email
-	Byte[] avatar
+	byte[] avatar
 	
 	static hasMany = [ownerRecipes:Recipe, favoritesRecipes:Recipe, votes:Vote, comments:Comment, friends:User]
 	
