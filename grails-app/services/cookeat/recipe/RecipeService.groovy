@@ -89,8 +89,8 @@ class RecipeService {
 	
 	def deleteRecipe(Recipe actual,User user){
 		List<Recipe> listRecipe=Recipe.findAllByOwner(user)
-		for(var in listRecipe){
-			if(var.getRecipe()==actual){
+		for(recipe in listRecipe){
+			if(recipe.equals(actual)){
 				actual.delete()
 				return true
 				}
