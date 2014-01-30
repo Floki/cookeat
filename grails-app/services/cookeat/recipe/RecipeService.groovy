@@ -32,12 +32,13 @@ class RecipeService {
 		
 		List<Recipe> listRecipe=Recipe.getAll()
 		List<Recipe> result=new ArrayList<Recipe>()
-		for( var in listRecipe){
-			if(var.owner==owner){
-				result.add(var)
+		
+		for( recipe in listRecipe){
+			if(recipe.owner.email == owner.email){
+				result.add(recipe)
 			}
-			return result	
 		}	
+		return result
 	}
 	
 	def updateTitleRecipe(Recipe actual, String title){
