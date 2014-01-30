@@ -11,7 +11,7 @@ import cookeat.user.User
  */
 class UserServiceIntegrationSpec extends Specification {
 
-		UserService userService = new UserService()
+		UserService userService
 
     void "test create user"() {
 			expect:
@@ -57,12 +57,14 @@ class UserServiceIntegrationSpec extends Specification {
 				User.findByFirstname("first") != null
 				userService.updateUser(user, "desc", UserService.Action.DESCRIPTION) != null
 				User.findByDescription("desc") != null
+				userService.updateUser(user, new byte[20], UserService.Action.AVATAR) != null;
 				
-				userService.updateUser(user, 666, UserService.Action.EMAIL) == null
-				userService.updateUser(user, 666, UserService.Action.FIRSTNAME) == null
-				userService.updateUser(user, 666, UserService.Action.LASTNAME) == null
-				userService.updateUser(user, 666, UserService.Action.DESCRIPTION) == null
-				userService.updateUser(user, 666, UserService.Action.PASSWORD) == null
+				userService.updateUser(user, 777, UserService.Action.EMAIL) == null
+				userService.updateUser(user, 777, UserService.Action.FIRSTNAME) == null
+				userService.updateUser(user, 777, UserService.Action.LASTNAME) == null
+				userService.updateUser(user, 777, UserService.Action.DESCRIPTION) == null
+				userService.updateUser(user, 777, UserService.Action.PASSWORD) == null
+				userService.updateUser(user, 777, UserService.Action.AVATAR) == null
 				
 				// Decide to avoid username change
 				userService.updateUser(user, "username", UserService.Action.USERNAME) == null
