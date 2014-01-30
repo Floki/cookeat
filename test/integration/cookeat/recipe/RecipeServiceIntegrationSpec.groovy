@@ -118,10 +118,20 @@ class RecipeServiceIntegrationSpec extends Specification {
 			def user = new User(email: "test@test.test", username: "test", password: "test" )
 			user.save(failOnError : true)
 			
+			Recipe recipe = recipeService.createBaseRecipe("title", "recipe", new HashMap<String, String>(), user)
+			recipe.save(failOnError:true)
+			
+			Recipe recipe1 = recipeService.createBaseRecipe("title", "recipe", new HashMap<String, String>(), user)
+			recipe1.save(failOnError:true)
+			
+			Recipe recipe2 = recipeService.createBaseRecipe("title", "recipe", new HashMap<String, String>(), user)
+			recipe2.save(failOnError:true)
 		when:
 			List<Recipe> actual=recipeService.readAllRecipe(user)
-			
+		
 		then:
-			actual.contains(actual)
+			actual.contains(recipe)==true
+			actual.contains(recipe1)==true
+			actual.contains(recipe2)==true
 	}
 }
