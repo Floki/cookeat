@@ -14,7 +14,7 @@ class RecipeController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Recipe.list(params), model:[recipeInstanceCount: Recipe.count()]
+       respond Recipe.list(params), model:[recipeInstanceCount: Recipe.count()]
     }
 
     def show(Recipe recipeInstance) {
