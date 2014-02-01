@@ -16,6 +16,9 @@
 	<r:layoutResources />
 	<link type="text/css" href="${resource(dir: 'css', file: 'dashboard.css')}" />
 	<style>
+  		.list-group ul li a{ 
+  			color:#FFFFFF
+  		}
 		body {
   			padding-top: 100px;
 		}

@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="layout" content="main" />
-<title>Cookeat</title>
+	<meta name="layout" content="main" />
+	<title>Cookeat</title>
 </head>
 <body>
-
-
 	<div class="row">
 	
 		<sec:ifLoggedIn>
-			<div class="col-md-3">
-				<div class="bs-sidebar affix">
-					<ul class="nav bs-sidenav jumbotron">
+			<div class="col-md-3 ">
+				<div class="bs-sidebar affix ">
+				<div class="list-group jumbotron" style="background-color:#428bca;">
+					<ul class="nav bs-sidenav ">
 						<li><a href="#">Accueil</a></li>
 						<li><a href="#">Profil</a></li>
 						<li><a href="#">Mes recettes</a></li>
 						<li><a href="#">Mes amis</a></li>
 					</ul>
+					</div>
 				</div>
 			</div>
 		</sec:ifLoggedIn>
