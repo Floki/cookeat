@@ -34,19 +34,17 @@
 				
 					<sec:ifNotLoggedIn>
 					<div class="col-md-9" style="line-height:5">
-							<form class="navbar-form" role="form">
+							<form class="navbar-form" action='cookeat/j_spring_security_check' method='POST' id='loginForm' class='cssform' autocomplete='off'>
 								<div class="form-group">
-									<input type="text" placeholder="Utilisateur" class="form-control">
+									<input type='text' class='text_ form-control' name='j_username' id='username' placeholder="Utilisateur"/>
 								</div>
 								<div class="form-group">
-									<input type="password" placeholder="Mot de passe"
-										class="form-control">
+									<input type='password' class='text_ form-control' name='j_password' id='password' placeholder="Mot de passe"/>
 								</div>
-								<g:link controller="login">
-									<button type="submit" class="btn btn-success">Connexion</button>
-									</g:link>
+								<input class="btn btn-success" type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
 								<button type="button" class="btn btn-primary">Inscription</button>
 							</form>
+							
 						</div>
 					</sec:ifNotLoggedIn >
 					<sec:ifLoggedIn>
