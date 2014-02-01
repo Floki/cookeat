@@ -31,24 +31,41 @@
 						<img src="${resource(dir: 'images', file: 'logo.gif')}" alt="Grails" />
 					</a>
 				</div>
-				<sec:ifNotLoggedIn>
-					<div class="col-md-9" style="line-height:5">
-						<form class="navbar-form" role="form">
-							<div class="form-group">
-								<input type="text" placeholder="Utilisateur" class="form-control">
-							</div>
-							<div class="form-group">
-								<input type="password" placeholder="Mot de passe"
-									class="form-control">
-							</div>
-							<button type="submit" class="btn btn-success">Connexion</button>
-							<button type="button" class="btn btn-primary">Inscription</button>
-						</form>
-					</div>
-				</sec:ifNotLoggedIn>
-				<sec:ifLoggedIn>
 				
-				</sec:ifLoggedIn>
+					<sec:ifNotLoggedIn>
+					<div class="col-md-9" style="line-height:5">
+							<form class="navbar-form" role="form">
+								<div class="form-group">
+									<input type="text" placeholder="Utilisateur" class="form-control">
+								</div>
+								<div class="form-group">
+									<input type="password" placeholder="Mot de passe"
+										class="form-control">
+								</div>
+								<g:link controller="login">
+									<button type="submit" class="btn btn-success">Connexion</button>
+									</g:link>
+								<button type="button" class="btn btn-primary">Inscription</button>
+							</form>
+						</div>
+					</sec:ifNotLoggedIn >
+					<sec:ifLoggedIn>
+					<div class="col-md-6" style="line-height:5"></div>
+					<div class="col-md-2" style="line-height:5">
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								Bienvenue <sec:loggedInUserInfo field="username"/> <span class="caret"></span> 
+								<span class="sr-only">Toggle Dropdown</span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Préférences</a></li>
+								<li class="divider"></li>
+								<li><g:link controller="logout">Déconnexion</g:link></li>
+							</ul>
+						</div>
+						</div>
+					</sec:ifLoggedIn>
+				
 		</div>
 		</div>
 	</div>
