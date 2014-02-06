@@ -23,7 +23,19 @@
 			<button type="button" class="btn btn-primary">Créer une
 				recette</button>
 		</g:link>
-
+		<g:if test="${sec.loggedInUserInfo(field:'username') == recipeInstance.owner.username}">
+		
+			<g:link class="create pull-left" action="edit" resource="${recipeInstance}">
+				<button type="button" class="btn btn-success">Modifier cette
+					recette</button>
+			</g:link>
+			<g:form url="[resource:recipeInstance, action:'delete']" method="DELETE">
+				<g:actionSubmit class="delete btn btn-danger " action="delete"
+					value="${message(code: 'Supprimer cette recette')}"
+					onclick="return confirm('${message(code: 'Êtes vous sur de vouloir supprimer cette recette?')}');" />
+			</g:form>
+		</g:if>
+			
 		<div class="row">
 			<div class="col-md-4">
 				
@@ -38,8 +50,8 @@
 			<div class="col-md-4 text-center">
 				<h1>
 					<g:fieldValue bean="${recipeInstance}" field="title" />
-					
-					<span style="font-size:50%">
+				</h1>
+				<span>
 						Par: 
 						<g:link controller="user" action="show" id="${recipeInstance?.owner?.id}">
 							${recipeInstance?.owner?.username}
@@ -55,8 +67,7 @@
 							</g:else>
 							)
 						</g:if>
-					</span>
-				</h1> 
+					</span> 
 				<span class="glyphicon glyphicon-star"></span>
 				<span class="glyphicon glyphicon-star"></span>
 				<span class="glyphicon glyphicon-star"></span>
@@ -117,18 +128,6 @@
 				<g:fieldValue bean="${recipeInstance}" field="recipe" />
 			</div>
 		</div>
-		
-
-
-		
-
-		<g:if test="${recipeInstance?.description}">
-			<li class="fieldcontain"><span id="description-label"
-				class="property-label"><g:message
-						code="recipe.description.label" default="Description" /></span> <span
-				class="property-value" aria-labelledby="description-label"><g:fieldValue
-						bean="${recipeInstance}" field="description" /></span></li>
-		</g:if>
 
 		<g:if test="${recipeInstance?.comments}">
 			<li class="fieldcontain"><span id="comments-label"
@@ -157,17 +156,7 @@
 
 
 
-		<g:form url="[resource:recipeInstance, action:'delete']"
-			method="DELETE">
-			<fieldset class="buttons">
-				<g:link class="edit" action="edit" resource="${recipeInstance}">
-					<g:message code="default.button.edit.label" default="Edit" />
-				</g:link>
-				<g:actionSubmit class="delete" action="delete"
-					value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-					onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-			</fieldset>
-		</g:form>
+		
 	</div>
 </body>
 </html>

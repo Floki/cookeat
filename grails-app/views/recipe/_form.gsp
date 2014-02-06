@@ -58,37 +58,3 @@
 	<g:textField name="description" value="${recipeInstance?.description}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'comments', 'error')} ">
-	<label for="comments">
-		<g:message code="recipe.comments.label" default="Comments" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${recipeInstance?.comments?}" var="c">
-    <li><g:link controller="comment" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="comment" action="create" params="['recipe.id': recipeInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'comment.label', default: 'Comment')])}</g:link>
-</li>
-</ul>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'votes', 'error')} ">
-	<label for="votes">
-		<g:message code="recipe.votes.label" default="Votes" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${recipeInstance?.votes?}" var="v">
-    <li><g:link controller="vote" action="show" id="${v.id}">${v?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="vote" action="create" params="['recipe.id': recipeInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'vote.label', default: 'Vote')])}</g:link>
-</li>
-</ul>
-
-</div>
-

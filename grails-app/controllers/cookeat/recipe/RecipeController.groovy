@@ -10,7 +10,7 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured(['ROLE_ADMIN'])
 class RecipeController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 	
 	RecipeService recipeService
 
@@ -67,6 +67,7 @@ class RecipeController {
             return
         }
 
+		//TODO Here we should use the recipeService but too heavy 
         recipeInstance.save flush:true
 
         request.withFormat {
