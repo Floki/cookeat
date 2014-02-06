@@ -11,6 +11,8 @@ import grails.plugin.springsecurity.annotation.Secured
 class RecipeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	
+	RecipeService recipeService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -37,6 +39,7 @@ class RecipeController {
             return
         }
 
+		// TODO Here we should use the recipeService but too heavy 
         recipeInstance.save flush:true
 
         request.withFormat {
