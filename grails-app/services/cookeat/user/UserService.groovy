@@ -82,4 +82,15 @@ class UserService {
 				return User.findByUsername(stringToSearch)
 			}
 		}
+
+		def addFriend(User actualUser,User friend){
+			if(actualUser.friends==null){
+				actualUser.friends = new HashSet()
+			}
+			if(!actualUser.friends.contains(friend)){
+				actualUser.friends.add(friend)
+				return true;
+			}
+				return false;
+		}
 }

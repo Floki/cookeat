@@ -83,4 +83,14 @@ class UserServiceIntegrationSpec extends Specification {
 				userService.readUser("logindqsdqd") == null
 				userService.readUser("login2@mddsqp.fr") == null
 		}
+		
+		void "test add user "(){
+			setup:
+				User user1=userService.createUser("login","mdp","login@mdp.fr")
+				User user2=userService.createUser("login2","mdp2","login2@mdp.fr")
+				user1.save()
+				user2.save()
+			expect:
+				userService.addFriend(user1,user2)==true
+		}
 }

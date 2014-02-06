@@ -16,8 +16,8 @@ class UserSpec extends Specification {
     def cleanup() {
     }
 
-    void "create non valid user"() {
-			when:"new user is not valid"
+    void "create user"() {
+			when:"new user valid or not valid"
 			then:
 				new User(username:username,password:password,firstname:firstname,lastname:lastname,email:email).validate() == isValid;
 			
