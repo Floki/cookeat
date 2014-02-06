@@ -88,7 +88,7 @@ class RecipeService {
 		return comment
 	}
 	
-	def deleteRecipe(Recipe actual,User user){
+	def deleteRecipe(Recipe actual,User user) {
 		List<Recipe> listRecipe=Recipe.findAllByOwner(user)
 		for(recipe in listRecipe){
 			if(recipe.equals(actual)){
@@ -98,4 +98,19 @@ class RecipeService {
 			}
 		return false
 		}
+	
+	def searchRecipe(String stringToSearch) {
+		List<Recipe> recipes = new ArrayList<Recipe>();
+		String[] searchWords = stringToSearch.split(" ");
+		for(String currentSearch : searchWords) {
+			def search = "%" + currentSearch.replace(' ', '%') + "%";
+			def request = "FROM  Recipe as r " +
+										"WHERE r.title  LIKE '" + search + "' " +
+										"OR r.description  LIKE '" + search + "' "
+										"OR r.recipe  LIKE '" + search + "' ";
+			recipes.addAll(Recipe.findAll(request));
+		}
+		
+		return recipes;
+	}
 }

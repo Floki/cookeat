@@ -26,11 +26,11 @@ class BootStrap {
 		ingr.put("Poulet", "1kg");
 		ingr.put("Vache Hallal", "100 vaches");
 		
-		Recipe rec1 = new Recipe(title: "rec1", owner: user1, recipe: "rec1", ingredients: ingr)
+		Recipe rec1 = new Recipe(title: "Poulet aux noix", owner: user1, recipe: "Poulet aux noix", ingredients: ingr, description: "Venez gouter ce délicieux met", nbPeople: 4)
 		rec1.save(FailOnError : true)
-		Recipe rec2 = new Recipe(title: "rec2", owner: user2, recipe: "rec2", ingredients: ingr)
+		Recipe rec2 = new Recipe(title: "Mamie épicée aux amandes douces", owner: user2, recipe: "Mamie épicée aux amandes douces", ingredients: ingr, description: "Bonne mamie d'antan. Vous allez adorer!")
 		rec2.save(FailOnError : true)
-		Recipe rec3 = new Recipe(title: "rec3", owner: user2, recipe: "rec3", ingredients: ingr)
+		Recipe rec3 = new Recipe(title: "Coulis de jus de chaussette", owner: user2, recipe: "Coulis de jus de chaussette", ingredients: ingr, description: "Blup blop. Blap Hihi Bloup")
 		rec3.save(FailOnError : true)
     }
     def destroy = {

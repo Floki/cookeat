@@ -1,8 +1,8 @@
 package cookeat.user
 
-
-
 import spock.lang.*
+import cookeat.recipe.Recipe
+import cookeat.recipe.RecipeService;
 import cookeat.user.UserService
 import cookeat.user.User
 
@@ -12,7 +12,8 @@ import cookeat.user.User
 class UserServiceIntegrationSpec extends Specification {
 
 		UserService userService
-
+		RecipeService recipeService
+		
     void "test create user"() {
 			expect:
 				User.findByUsername("login") == null
@@ -84,6 +85,7 @@ class UserServiceIntegrationSpec extends Specification {
 				userService.readUser("login2@mddsqp.fr") == null
 		}
 		
+<<<<<<< HEAD
 		void "test add user "(){
 			setup:
 				User user1=userService.createUser("login","mdp","login@mdp.fr")
@@ -92,5 +94,26 @@ class UserServiceIntegrationSpec extends Specification {
 				user2.save()
 			expect:
 				userService.addFriend(user1,user2)==true
+=======
+		void "test add recipe to favorites"(){
+			
+			setup :
+				def user = new User(email: "test@test.test", username: "test", password: "test" )
+				user.save(failOnError:true)	
+				
+				Recipe recipe = recipeService.createBaseRecipe("title", "recipe", new HashMap<String, String>(), user)
+				recipe.save(failOnError:true)
+				
+				user.favoritesRecipes = new HashSet()
+			
+			expect:
+				user.favoritesRecipes.contains(recipe)==false
+			
+			when:
+				userService.addRecipeToFavorite(user, recipe)
+			
+			then:
+				user.favoritesRecipes.contains(recipe)==true
+>>>>>>> 1f10d521015df72febfc2f503a7b472e017deed5
 		}
 }
