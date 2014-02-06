@@ -85,16 +85,6 @@ class UserServiceIntegrationSpec extends Specification {
 				userService.readUser("login2@mddsqp.fr") == null
 		}
 		
-<<<<<<< HEAD
-		void "test add user "(){
-			setup:
-				User user1=userService.createUser("login","mdp","login@mdp.fr")
-				User user2=userService.createUser("login2","mdp2","login2@mdp.fr")
-				user1.save()
-				user2.save()
-			expect:
-				userService.addFriend(user1,user2)==true
-=======
 		void "test add recipe to favorites"(){
 			
 			setup :
@@ -114,6 +104,5 @@ class UserServiceIntegrationSpec extends Specification {
 			
 			then:
 				user.favoritesRecipes.contains(recipe)==true
->>>>>>> 1f10d521015df72febfc2f503a7b472e017deed5
 		}
 }
