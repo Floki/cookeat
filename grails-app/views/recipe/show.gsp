@@ -9,33 +9,8 @@
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<ul class="nav nav-tabs">
-		<li><g:link controller="User" action="index">Dernières recettes</g:link></li>
-		<li class="active"><g:link controller="Recipe" action="index">Top recettes</g:link></li>
-		<sec:ifLoggedIn>
-			<li><a href="#">Celles de mes amis</a></li>
-		</sec:ifLoggedIn>
-		<form class="navbar-form " role="search">
-			<div class="input-group">
-
-				<input type="text" class="form-control">
-				<div class="input-group-btn">
-					<button type="submit" class="btn btn-default" tabindex="-1">Rechercher</button>
-					<button class="btn btn-default dropdown-toggle"
-						data-toggle="dropdown">
-						<span id="dropdown_title">Titre</span> <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu pull-right" id="searchParam">
-						<li><a href="#">Titre</a></li>
-						<li><a href="#">Description</a></li>
-						<li><a href="#">Temps de préparation</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Nombre de personnes</a></li>
-					</ul>
-				</div>
-			</div>
-		</form>
-	</ul>
+	<g:render template="navBarRecipe"/>
+	
 	<div id="show-recipe" class="content scaffold-show" role="main">
 		<br />
 		<g:if test="${flash.message}">
@@ -69,8 +44,8 @@
 						<g:link controller="user" action="show" id="${recipeInstance?.owner?.id}">
 							${recipeInstance?.owner?.username}
 						</g:link>
-						(<g:if test="${recipeInstance?.nbPeople}">
-							<g:fieldValue bean="${recipeInstance}" field="nbPeople" />
+						<g:if test="${recipeInstance?.nbPeople}">
+							(<g:fieldValue bean="${recipeInstance}" field="nbPeople" />
 										
 							<g:if test="${recipeInstance?.nbPeople  > 1 }">
 								Personnes
@@ -78,8 +53,8 @@
 							<g:else>
 								Personne
 							</g:else>
-
-						</g:if>)
+							)
+						</g:if>
 					</span>
 				</h1> 
 				<span class="glyphicon glyphicon-star"></span>
