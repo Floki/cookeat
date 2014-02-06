@@ -49,6 +49,7 @@ body {
 
 #grailsLogo {
 	background-color:#4B0082;
+	height:100px;
 }
 
 /* replace with .no-boxshadow body if you have modernizr available */

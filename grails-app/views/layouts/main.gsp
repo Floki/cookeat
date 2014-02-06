@@ -30,9 +30,11 @@
 		<div class="panel panel-warning">
 			<div class="row">
 				<div class="col-md-3">
-					<a href="http://localhost:8080/cookeat"> 
-						<img src="${resource(dir: 'images', file: 'logo.gif')}" alt="Grails" />
-					</a>
+					<div id="grailsLogo">
+					 <a href="http://localhost:8080/cookeat">  
+              <img src="${resource(dir: 'images', file: 'logo-mini.png')}" alt="Cook'Eat" height="75px"/>	  
+					 </a>
+					</div>
 				</div>
 				
 					<sec:ifNotLoggedIn>
