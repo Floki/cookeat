@@ -103,6 +103,8 @@ class RecipeController {
 
 	def addComment() {
 		Recipe recipe = Recipe.get(params.id)
+		System.out.println params.id
+		System.out.println params.comment
 		recipeService.commentOnRecipe(recipe, params.comment, springSecurityService.getCurrentUser())
 		redirect recipe
 	}

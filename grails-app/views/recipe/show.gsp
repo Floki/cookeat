@@ -129,17 +129,7 @@
 			</div>
 		</div>
 
-		<g:if test="${recipeInstance?.comments}">
-			<li class="fieldcontain"><span id="comments-label"
-				class="property-label"><g:message
-						code="recipe.comments.label" default="Comments" /></span> <g:each
-					in="${recipeInstance.comments}" var="c">
-					<span class="property-value" aria-labelledby="comments-label"><g:link
-							controller="comment" action="show" id="${c.id}">
-							${c?.encodeAsHTML()}
-						</g:link></span>
-				</g:each></li>
-		</g:if>
+		<g:render template="commentList"/>
 
 		<g:if test="${recipeInstance?.votes}">
 			<li class="fieldcontain"><span id="votes-label"
@@ -152,7 +142,7 @@
 				</g:each></li>
 		</g:if>
     
-    <g:render controller="comment" template="addComment"/>
+    <g:render template="addComment"/>
   
 	</div>
 </body>
