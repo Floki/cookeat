@@ -36,6 +36,6 @@ class CommentService {
 	}
 	
 	def deleteComment(Comment comment){
-		comment.delete()
+		comment.delete flush: true
 	}
 }

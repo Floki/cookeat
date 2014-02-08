@@ -6,6 +6,11 @@
 			   <h4>${c.owner?.username}</h4>
 		   </g:link>
 				${c.text}
+				<g:if test="${sec.loggedInUserInfo(field:'username') == c.owner.username}">
+				  <g:link action="removeComment" params="[commentId:c.id, id: recipeInstance.id]">
+				    <button type="button" class="close" aria-hidden="true">&times;</button>
+			    </g:link>
+			  </g:if>
 			</li>
 		</g:each>
 	</ul>

@@ -119,9 +119,15 @@ class RecipeController {
 		@Secured(['ROLE_USER'])
 		def addComment() {
 			Recipe recipe = Recipe.get(params.id)
-			System.out.println params.id
-			System.out.println params.comment
 			recipeService.commentOnRecipe(recipe, params.comment, springSecurityService.getCurrentUser())
+			redirect recipe
+		}
+		
+		@Secured(['ROLE_USER'])
+		def removeComment() {
+			Comment comment = Comment.get(params.commentId)
+			Recipe recipe = Recipe.get(params.id)
+			commentService.deleteComment(comment)
 			redirect recipe
 		}
 }

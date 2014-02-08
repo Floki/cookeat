@@ -3,6 +3,8 @@ package cookeat.user
 
 
 import static org.springframework.http.HttpStatus.*
+import cookeat.recipe.Comment
+import cookeat.recipe.CommentService
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 
@@ -10,6 +12,8 @@ import grails.plugin.springsecurity.annotation.Secured
 class UserController {
 
 	static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
+	
+	CommentService commentService
 	
 	@Secured(['ROLE_USER'])
 	def index(Integer max) {
@@ -122,5 +126,14 @@ class UserController {
 			}
 			'*'{ render status: NOT_FOUND }
 		}
+	}
+	
+	
+	@Secured(['ROLE_USER'])
+	def removeComment() {
+		Comment comment = Comment.get(params.commentId)
+		User user = User.get(params.id)
+		commentService.deleteComment(comment)
+		redirect user
 	}
 }

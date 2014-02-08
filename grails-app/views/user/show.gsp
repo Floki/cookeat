@@ -116,6 +116,9 @@
 								<g:link controller="recipe" action="show" id="${it.recipe.id}">
 									${it.recipe.title}
 								</g:link>
+								<g:link action="removeComment" params="[commentId:it.id, id: userInstance.id]">
+			            <button type="button" class="close" aria-hidden="true">&times;</button>
+			          </g:link>
 							</td>
 							<td>
 								${it.text}
