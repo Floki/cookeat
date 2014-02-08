@@ -98,12 +98,9 @@ class UserServiceIntegrationSpec extends Specification {
 			
 			expect:
 				user.favoritesRecipes.contains(recipe)==false
-			
-			when:
 				userService.addRecipeToFavorite(user, recipe)
-			
-			then:
 				user.favoritesRecipes.contains(recipe)==true
+				userService.addRecipeToFavorite(user, recipe)==false
 		}
 		
 	void "test add friend"(){
