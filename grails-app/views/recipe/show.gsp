@@ -1,5 +1,5 @@
-
 <%@ page import="cookeat.recipe.Recipe"%>
+<%@ page import="cookeat.recipe.Comment"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -151,12 +151,9 @@
 						</g:link></span>
 				</g:each></li>
 		</g:if>
-
-
-
-
-
-		
+    
+    <g:render controller="comment" template="addComment"/>
+  
 	</div>
 </body>
 </html>
