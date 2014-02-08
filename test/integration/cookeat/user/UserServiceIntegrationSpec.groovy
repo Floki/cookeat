@@ -106,11 +106,13 @@ class UserServiceIntegrationSpec extends Specification {
 	void "test add friend"(){
 		setup :
 			User user = userService.createUser("test", "test", "test@test.test")
-			User friend = userService.createUser("test2", "test2", "test2@test.test")
+			User user2 = new User(email: "test2@test.test", password: "test", username: "test2")
+			User friend = userService.createUser("test3", "test3", "test3@test.test")
 			
 		expect:
 			user.friends.empty
 			userService.addFriend(user, friend)
+			userService.addFriend(user2, user)
 			user.friends.contains(friend)
 			userService.addFriend(user, friend) == false
 			
