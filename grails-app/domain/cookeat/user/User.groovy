@@ -6,7 +6,11 @@ import cookeat.recipe.Vote
 
 import java.awt.Image
 
-
+/**
+ * User Domain class
+ * @author Exasky, Smail, Skaboy, Floki
+ *
+ */
 class User {
 
 	transient springSecurityService
@@ -18,16 +22,21 @@ class User {
 	String description
 	String email
 	byte[] avatar
-	
-	static hasMany = [ownerRecipes:Recipe, favoritesRecipes:Recipe, votes:Vote, comments:Comment, friends:User]
-	
+		
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
 
+	/*
+	 * A user has shared recipe, has favorited recipes, can post comments and votes, and have friends
+	 */
+	static hasMany = [ownerRecipes:Recipe, favoritesRecipes:Recipe, votes:Vote, comments:Comment, friends:User]
 	static transients = ['springSecurityService']
 
+	/*
+	 * A user must have an Username, a Password and an Email
+	 */
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false

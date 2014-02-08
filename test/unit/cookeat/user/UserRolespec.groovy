@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 
 
-@TestFor(UserRole)
+@TestFor(UserRole) 
 class UserRolespec extends Specification{
 	def setup() {
 	}

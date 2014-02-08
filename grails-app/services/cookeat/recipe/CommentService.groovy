@@ -5,6 +5,11 @@ package cookeat.recipe
 import cookeat.user.User
 import grails.transaction.Transactional
 
+/**
+ * User Service class
+ * @author Exasky, Smail, Skaboy, Floki
+ *
+ */
 @Transactional
 class CommentService {
 
