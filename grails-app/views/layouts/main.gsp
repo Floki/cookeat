@@ -46,7 +46,7 @@
 							<div class="form-group">
 								<input type='password' class='text_ form-control' name='j_password' id='password' placeholder="Mot de passe"/>
 							</div>
-							<input class="btn btn-success" type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
+							<input class="btn btn-success" type='submit' id="connexion" value='${message(code: "springSecurity.login.button")}'/>
 							<g:link controller="User" class="create btn btn-primary" action="create">Inscription</g:link>
 						</form>
 							
@@ -63,7 +63,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><g:link controller="User" action="show" id="${sec.loggedInUserInfo(field:'id')}">Préférences</g:link></li>
 							<li class="divider"></li>
-							<li><g:link controller="logout">Déconnexion</g:link></li>
+							<li><g:link controller="logout" id="deconnexion">Déconnexion</g:link></li>
 						</ul>
 					</div>
 					</div>
