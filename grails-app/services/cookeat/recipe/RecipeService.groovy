@@ -83,6 +83,10 @@ class RecipeService {
 	
 	def commentOnRecipe(Recipe actual, String text, User user){
 		Comment comment=commentService.createComment(user, actual, text)
+		user.comments.add(comment)
+		user.save()
+		if(actual.comments == null)
+			actual.comments = new HashSet<Comment>()
 		actual.comments.add(comment)
 		actual.save()
 		return comment

@@ -1,6 +1,8 @@
 package cookeat.user
 
+import cookeat.recipe.Comment
 import cookeat.recipe.Recipe
+import cookeat.recipe.Vote
 import grails.transaction.Transactional
 
 @Transactional
@@ -18,6 +20,11 @@ class UserService {
 	
     def createUser(String username, String password, String email) {
 			User user = new User(username: username, password: password, email : email );
+			user.votes = new HashSet<Vote>()
+			user.comments = new HashSet<Comment>()
+			user.favoritesRecipes = new HashSet<Recipe>()
+			user.friends = new HashSet<User>()
+			user.ownerRecipes = new HashSet<Recipe>()
 			return user.save();
 		}
 		
