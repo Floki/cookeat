@@ -128,7 +128,8 @@
 				<g:fieldValue bean="${recipeInstance}" field="recipe" />
 			</div>
 		</div>
-
+		
+		<h3>Commentaires: </h3>
 		<g:render template="commentList"/>
 
 		<g:if test="${recipeInstance?.votes}">
