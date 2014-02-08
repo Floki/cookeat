@@ -9,7 +9,7 @@ import cookeat.user.UserRole
 class BootStrap {
 
     def init = { servletContext ->
-		Role adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true, FailOnError : true)
+		Role adminRole = new Role(authority: 'ROLE_USER').save(flush: true, FailOnError : true)
 		
 		User user1 = new User(username:"user1",password:"test",email:"user1@test.test")
 		user1.save(failOnError : true)
