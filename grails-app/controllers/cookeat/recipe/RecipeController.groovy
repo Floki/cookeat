@@ -7,26 +7,29 @@ import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 
 @Transactional(readOnly = true)
-@Secured(['ROLE_ADMIN'])
 class RecipeController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 	
 	RecipeService recipeService
 
+	@Secured(['permitAll'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
        respond Recipe.list(params), model:[recipeInstanceCount: Recipe.count()]
     }
 
+	@Secured(['permitAll'])
     def show(Recipe recipeInstance) {
         respond recipeInstance
     }
 
+	@Secured(['ROLE_USER'])
     def create() {
         respond new Recipe(params)
     }
 
+	@Secured(['ROLE_USER'])
     @Transactional
     def save(Recipe recipeInstance) {
         if (recipeInstance == null) {
@@ -51,10 +54,12 @@ class RecipeController {
         }
     }
 
+	@Secured(['ROLE_USER'])
     def edit(Recipe recipeInstance) {
         respond recipeInstance
     }
 
+	@Secured(['ROLE_USER'])
     @Transactional
     def update(Recipe recipeInstance) {
         if (recipeInstance == null) {
@@ -79,6 +84,7 @@ class RecipeController {
         }
     }
 
+	@Secured(['ROLE_USER'])
     @Transactional
     def delete(Recipe recipeInstance) {
 
