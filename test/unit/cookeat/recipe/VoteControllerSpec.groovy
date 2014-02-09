@@ -58,6 +58,14 @@ class VoteControllerSpec extends Specification {
             controller.flash.message != null
             Vote.count() == 1
     }
+	
+	void "Test the save action do not correctly save"(){
+		when:
+			def vote = null
+		
+		then:
+			controller.save(vote) == null
+	}
 
     void "Test that the show action returns the correct model"() {
         when:"The show action is executed with a null domain"
