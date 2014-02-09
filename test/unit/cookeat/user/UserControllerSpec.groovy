@@ -8,7 +8,7 @@ import grails.test.mixin.*
 import spock.lang.*
 
 @TestFor(UserController)
-@Mock(User)
+@Mock([User,Role])
 class UserControllerSpec extends Specification {
 
 		SpringSecurityService springSecurityService = Mock(SpringSecurityService)
@@ -65,6 +65,14 @@ class UserControllerSpec extends Specification {
             controller.flash.message != null
             User.count() == 1
     }
+	
+	void "Test the save action do not correctly save"(){
+		when:
+			def user = null
+		
+		then:
+			controller.save(user)==null
+	}
 
     void "Test that the show action returns the correct model"() {
         when:"The show action is executed with a null domain"
