@@ -2,6 +2,8 @@ package cookeat.recipe
 
 
 
+import java.util.Map;
+
 import cookeat.user.User
 import cookeat.user.UserService
 import spock.lang.*
@@ -139,15 +141,20 @@ class RecipeServiceIntegrationSpec extends Specification {
 	void "test comment on recipe"(){
 		
 		setup:
-		def user = userService.createUser("test", "test", "test@test.test")
+			User user = userService.createUser("test", "test", "test@test.test")
 		
 		when:
-		Recipe recipe = recipeService.createBaseRecipe("title", "recipe", new HashMap<String, String>(), user)
-		
+			Recipe recipe = recipeService.createBaseRecipe("title", "recipe", new HashMap<String, String>(), user)
+			Recipe recipe2 = new Recipe(title: "rr", recipe: "tet", owner: user, ingredients: new HashMap<String,String>(), )
+			
 		then:
-		Comment comment=recipeService.commentOnRecipe(recipe, "comment", user)
-		recipe.comments.contains(comment)
-		user.comments.contains(comment)
+			Comment comment=recipeService.commentOnRecipe(recipe, "comment", user)
+			recipe.comments.contains(comment)
+			user.comments.contains(comment)
+			Comment comment2=recipeService.commentOnRecipe(recipe, "comment2", user)
+			recipe.comments.contains(comment2)
+			user.comments.contains(comment)
+			
 	}
 	
 	void "test read all recipe"(){
