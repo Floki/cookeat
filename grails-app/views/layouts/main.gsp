@@ -31,7 +31,7 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div id="grailsLogo">
-					 <a href="http://localhost:8080/cookeat">  
+					 <a href="${createLink(uri: '/')}">  
              			 <img src="${resource(dir: 'images', file: 'logo-mini.png')}" alt="Cook'Eat" height="75px"/>	  
 					 </a>
 					</div>
@@ -81,7 +81,7 @@
 					<div class="bs-sidebar affix ">
 					<div class="list-group jumbotron" style="background-color:#428bca;">
 						<ul class="nav bs-sidenav ">
-							<li><a href="#">Accueil</a></li>
+							<li><a href="${createLink(uri: '/')}">Accueil</a></li>
 							<li><g:link controller="User" action="show" id="${sec.loggedInUserInfo(field:'id')}">Profil</g:link></li>
 							<li><g:link controller="User" action="show" id="${sec.loggedInUserInfo(field:'id')}">Mes recettes</g:link></li>
 							<li><g:link controller="User" action="show" id="${sec.loggedInUserInfo(field:'id')}">Mes amis</g:link></li>
