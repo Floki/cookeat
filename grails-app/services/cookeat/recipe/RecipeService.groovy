@@ -13,9 +13,14 @@ class RecipeService {
 
     def createRecipe(String title,String description,String recipe,Map<String,String> ingredients,
 						byte[] picture,	int nbPeople, User owner) {
-		Recipe recipeToSave = new Recipe(owner: owner, title: title, description: description, recipe: recipe, 
-			ingredients: ingredients,
-			picture: picture, nbPeople: nbPeople)
+		Recipe recipeToSave = new Recipe()
+		recipeToSave.owner = owner
+		recipeToSave.title = title
+		recipeToSave.description = description
+		recipeToSave.recipe = recipe
+		recipeToSave.ingredients = (ingredients == null)?  new HashMap<String,String>() : ingredients
+		recipeToSave.picture = (picture == null)?  new byte[0] : picture		
+		recipeToSave.nbPeople = nbPeople
 		recipeToSave.votes = new HashSet<Vote>()
 		recipeToSave.comments = new HashSet<Comment>()
 		return recipeToSave.save()
@@ -57,7 +62,8 @@ class RecipeService {
 	}
 	
 	def updateIngredientsRecipe(Recipe actual, Map<String,String> ingredients){
-		actual.ingredients = ingredients
+		if(ingredients != null)
+			actual.ingredients = ingredients			
 		return actual.save()
 	}
 	
