@@ -2,11 +2,9 @@ package cookeat.recipe
 
 
 
-import java.util.Map;
-
+import spock.lang.*
 import cookeat.user.User
 import cookeat.user.UserService
-import spock.lang.*
 
 /**
  *
@@ -154,6 +152,20 @@ class RecipeServiceIntegrationSpec extends Specification {
 			Comment comment2=recipeService.commentOnRecipe(recipe, "comment2", user)
 			recipe.comments.contains(comment2)
 			user.comments.contains(comment)
+			
+	}
+	
+	void "test delete comment on recipe"(){
+		setup:
+			User user = userService.createUser("test", "test", "test@test.test")
+		
+		when:
+			Recipe recipe = recipeService.createBaseRecipe("title", "recipe", new HashMap<String, String>(), user)
+			Comment comment = recipeService.commentOnRecipe(recipe,"comment",user)
+			
+		then:
+			recipeService.deleteCommentOnRecipe(recipe, comment)
+			recipe.comments.empty
 			
 	}
 	

@@ -3,9 +3,9 @@ package cookeat.recipe
 
 
 import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
+import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class RecipeController {
@@ -136,9 +136,7 @@ class RecipeController {
 	
 	@Secured(['ROLE_USER'])
 	def removeComment() {
-		Comment comment = Comment.get(params.commentId)
-		Recipe recipe = Recipe.get(params.id)
-		commentService.deleteComment(comment)
+		Recipe recipe = recipeService.deleteCommentOnRecipe(Recipe.get(params.id), Comment.get(params.commentId))
 		redirect recipe
 	}
 }

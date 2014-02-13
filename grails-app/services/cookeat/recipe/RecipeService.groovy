@@ -1,9 +1,7 @@
 package cookeat.recipe
 
-import java.util.Map;
-
-import cookeat.user.User
 import grails.transaction.Transactional
+import cookeat.user.User
 
 @Transactional
 class RecipeService {
@@ -96,6 +94,18 @@ class RecipeService {
 		actual.comments.add(comment)
 		actual.save()
 		return comment
+	}
+	
+	def deleteCommentOnRecipe(Recipe actual, Comment comment){
+		actual.comments.remove(comment)
+		actual.save()
+		
+		User actualUser = User.findByUsername(comment.owner.username)
+		actualUser.comments.remove(comment)
+		actualUser.save()
+		
+		commentService.deleteComment(comment)
+		return actual
 	}
 	
 	def deleteRecipe(Recipe actual,User user) {
