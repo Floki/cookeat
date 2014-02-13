@@ -116,9 +116,11 @@
 								<g:link controller="recipe" action="show" id="${it.recipe.id}">
 									${it.recipe.title}
 								</g:link>
-								<g:link action="removeComment" params="[commentId:it.id, id: userInstance.id]">
-			            <button type="button" class="close" aria-hidden="true">&times;</button>
-			          </g:link>
+								<g:if test="${sec.loggedInUserInfo(field:'username') == userInstance.username}">
+									<g:link action="removeComment" params="[commentId:it.id, id: userInstance.id]">
+				            			<button type="button" class="close" aria-hidden="true">&times;</button>
+				          			</g:link>	
+			         			 </g:if>
 							</td>
 							<td>
 								${it.text}
