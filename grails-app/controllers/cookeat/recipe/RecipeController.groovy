@@ -43,16 +43,20 @@ class RecipeController {
             respond recipeInstance.errors, view:'create'
             return
         }
+		
+		Recipe recipe = recipeService.createRecipe(recipeInstance.title, recipeInstance.description,
+								   recipeInstance.recipe, recipeInstance.ingredients,
+								   recipeInstance.picture, recipeInstance.nbPeople, 
+								   recipeInstance.owner)
 
-		// TODO Here we should use the recipeService but too heavy 
-        recipeInstance.save flush:true
-
+//		recipeInstance.save flush:true
+		
         request.withFormat {
             form {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'recipeInstance.label', default: 'Recipe'), recipeInstance.id])
-                redirect recipeInstance
+                flash.message = message(code: 'default.created.message', args: [message(code: 'recipeInstance.label', default: 'Recipe'), recipe.id])
+                redirect recipe
             }
-            '*' { respond recipeInstance, [status: CREATED] }
+            '*' { respond recipe, [status: CREATED] }
         }
     }
 
@@ -74,15 +78,21 @@ class RecipeController {
             return
         }
 
-		//TODO Here we should use the recipeService but too heavy 
-        recipeInstance.save flush:true
+		recipeService.updateDescripstionRecipe(recipeInstance, recipeInstance.description)
+		recipeService.updateIngredientsRecipe(recipeInstance, recipeInstance.ingredients)
+		recipeService.updateNbPeopleRecipe(recipeInstance, recipeInstance.nbPeople)
+		recipeService.updatePictureRecipe(recipeInstance, recipeInstance.picture)
+		recipeService.updateRecipeRecipe(recipeInstance, recipeInstance.recipe)
+		Recipe recipe = recipeService.updateTitleRecipe(recipeInstance, recipeInstance.title)
+		
+//        recipeInstance.save flush:true
 
         request.withFormat {
             form {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Recipe.label', default: 'Recipe'), recipeInstance.id])
-                redirect recipeInstance
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Recipe.label', default: 'Recipe'), recipe.id])
+                redirect recipe
             }
-            '*'{ respond recipeInstance, [status: OK] }
+            '*'{ respond recipe, [status: OK] }
         }
     }
 
@@ -95,7 +105,8 @@ class RecipeController {
             return
         }
 
-        recipeInstance.delete flush:true
+		recipeService.deleteRecipe(recipeInstance, recipeInstance.owner)
+//		recipeInstance.delete flush:true
 
         request.withFormat {
             form {
@@ -116,18 +127,18 @@ class RecipeController {
         }
     }
 		
-		@Secured(['ROLE_USER'])
-		def addComment() {
-			Recipe recipe = Recipe.get(params.id)
-			recipeService.commentOnRecipe(recipe, params.comment, springSecurityService.getCurrentUser())
-			redirect recipe
-		}
-		
-		@Secured(['ROLE_USER'])
-		def removeComment() {
-			Comment comment = Comment.get(params.commentId)
-			Recipe recipe = Recipe.get(params.id)
-			commentService.deleteComment(comment)
-			redirect recipe
-		}
+	@Secured(['ROLE_USER'])
+	def addComment() {
+		Recipe recipe = Recipe.get(params.id)
+		recipeService.commentOnRecipe(recipe, params.comment, springSecurityService.getCurrentUser())
+		redirect recipe
+	}
+	
+	@Secured(['ROLE_USER'])
+	def removeComment() {
+		Comment comment = Comment.get(params.commentId)
+		Recipe recipe = Recipe.get(params.id)
+		commentService.deleteComment(comment)
+		redirect recipe
+	}
 }
