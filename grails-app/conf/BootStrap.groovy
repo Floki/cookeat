@@ -1,7 +1,4 @@
-import org.junit.internal.runners.statements.FailOnTimeout;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
-
-import cookeat.recipe.Recipe;
+import cookeat.recipe.Recipe
 import cookeat.user.Role
 import cookeat.user.User
 import cookeat.user.UserRole

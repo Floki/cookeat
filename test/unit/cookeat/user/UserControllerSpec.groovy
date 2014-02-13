@@ -1,10 +1,9 @@
 package cookeat.user
 
-
-
 import grails.plugin.springsecurity.SpringSecurityService
-import grails.plugins.springsecurity.*;
-import grails.test.mixin.*
+import grails.plugins.springsecurity.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 import spock.lang.*
 
 @TestFor(UserController)

@@ -3,7 +3,6 @@ package cookeat.recipe
 
 
 import cookeat.user.User
-import grails.test.mixin.*
 import spock.lang.*
 
 @TestFor(CommentController)

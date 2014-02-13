@@ -1,8 +1,9 @@
 package cookeat.recipe
 
-import cookeat.user.User;
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 import spock.lang.*
+import cookeat.user.User
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
