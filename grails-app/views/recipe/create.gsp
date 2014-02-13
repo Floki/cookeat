@@ -9,10 +9,14 @@
 		<g:render template="navBarRecipe"/>
 		
 		<div id="create-recipe" class="content scaffold-create" role="main">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
+		<g:form url="[resource:recipeInstance, action:'save']">
+			
+			
+			<h1>
+				Création d'une recette
+				<g:submitButton name="create" class="save btn btn-success pull-right" value="Créer la recette" />
+			</h1>
+
 			<g:hasErrors bean="${recipeInstance}">
 			<ul class="errors" role="alert">
 				<g:eachError bean="${recipeInstance}" var="error">
@@ -20,14 +24,12 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:recipeInstance, action:'save']"  enctype="multipart/form-data">
+			
 				<fieldset class="form">
-					<g:render template="form"/>
+					<g:render template="createform"/>
 				</fieldset>
-				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
-			</g:form>
+				
+		</g:form>
 		</div>
 	</body>
 </html>
