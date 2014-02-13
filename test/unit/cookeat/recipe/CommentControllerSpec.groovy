@@ -2,8 +2,10 @@ package cookeat.recipe
 
 
 
-import cookeat.user.User
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 import spock.lang.*
+import cookeat.user.User
 
 @TestFor(CommentController)
 @Mock([Comment, User, Recipe])
