@@ -72,6 +72,7 @@ grails.project.dependency.resolution = {
 
 		//spring security
 		compile ":spring-security-core:2.0-RC2"
+		compile ":geb:0.9.2"
     test ":geb:0.9.2"
 
 		// plugins needed at runtime but not for compilation
